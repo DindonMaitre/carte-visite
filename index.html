@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathilde MARLIER - Kinésithérapeute</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Photo Profile -->
+        <div class="profile-section">
+            <div class="profile-photo">
+                <img src="profile.jpg" alt="Mathilde MARLIER" id="profileImg">
+                <div class="profile-placeholder">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+            
+            <h1 class="name">Mathilde MARLIER</h1>
+            <p class="title">Kinésithérapeute –<br>Certifiée Méthode McKenzie</p>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <a href="tel:+33475428684" class="action-btn">
+                <i class="fas fa-phone"></i>
+            </a>
+            <a href="mailto:marlier.mathilde@hotmail.fr" class="action-btn">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://www.google.com/maps?q=91+Avenue+de+la+Libération,+Valence,+26000,+France" target="_blank" class="action-btn">
+                <i class="fas fa-map-marker-alt"></i>
+            </a>
+        </div>
+
+        <!-- Add Contact Button -->
+        <button class="add-contact-btn" onclick="downloadVCard()">
+            <i class="fas fa-user-plus"></i>
+            Ajouter contact
+        </button>
+
+        <!-- Contact Details -->
+        <div class="contact-details">
+            <div class="detail-item">
+                <i class="fas fa-phone"></i>
+                <div class="detail-content">
+                    <span class="detail-label">Téléphone</span>
+                    <a href="tel:+33475428684" class="detail-value">+33 4 75 42 86 84</a>
+                </div>
+            </div>
+
+            <div class="detail-item">
+                <i class="fas fa-envelope"></i>
+                <div class="detail-content">
+                    <span class="detail-label">Adresse e-mail</span>
+                    <a href="mailto:marlier.mathilde@hotmail.fr" class="detail-value">marlier.mathilde@hotmail.fr</a>
+                </div>
+            </div>
+
+            <div class="detail-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="detail-content">
+                    <span class="detail-label">Lieu</span>
+                    <p class="detail-value">91 Avenue de la Libération, Valence,<br>26000, France</p>
+                    <a href="https://www.google.com/maps?q=91+Avenue+de+la+Libération,+Valence,+26000,+France" target="_blank" class="map-link">
+                        Afficher sur la carte
+                    </a>
+                </div>
+            </div>
+
+            <div class="detail-item">
+                <i class="fas fa-briefcase"></i>
+                <div class="detail-content">
+                    <span class="detail-label">Cabinet les Cèdres</span>
+                    <p class="detail-value">Kinésithérapeute<br>Certifiée Méthode McKenzie</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Carte de visite numérique</p>
+        </div>
+    </div>
+
+    <script>
+        // Fonction pour télécharger la vCard
+        function downloadVCard() {
+            const vcard = `BEGIN:VCARD
+VERSION:3.0
+FN:Mathilde MARLIER
+N:MARLIER;Mathilde;;;
+TITLE:Kinésithérapeute - Certifiée Méthode McKenzie
+ORG:Cabinet les Cèdres
+TEL;TYPE=CELL:+33475428684
+EMAIL:marlier.mathilde@hotmail.fr
+ADR;TYPE=WORK:;;91 Avenue de la Libération;Valence;;26000;France
+URL:${window.location.href}
+END:VCARD`;
+
+            const blob = new Blob([vcard], { type: 'text/vcard' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Mathilde_MARLIER.vcf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Gestion de l'image de profil
+        const profileImg = document.getElementById('profileImg');
+        const profilePlaceholder = document.querySelector('.profile-placeholder');
+        
+        profileImg.onerror = function() {
+            this.style.display = 'none';
+            profilePlaceholder.style.display = 'flex';
+        };
+
+        profileImg.onload = function() {
+            this.style.display = 'block';
+            profilePlaceholder.style.display = 'none';
+        };
+    </script>
+</body>
+</html>
